@@ -13,7 +13,7 @@ public class rekaGracza extends Main{
         return karty;
     }
 
-    public rekaGracza(int numer, ArrayList<Card> karty) {
+    public rekaGracza(ArrayList<Card> karty) {
         this.numer = numer;
         this.karty = karty;
     }

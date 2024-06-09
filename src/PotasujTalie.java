@@ -1,6 +1,8 @@
+import java.util.ArrayList;
 
 public class PotasujTalie extends Main{
     PotasujTalie(){
+        String[] typ = {"0","skip","reverse","+2","+4","color switch"};
         int random;
         Integer i = 1;
 
@@ -15,47 +17,34 @@ public class PotasujTalie extends Main{
             i++;
         }
 
-        sortpile.add(new Card("Red", "0"));
-        sortpile.add(new Card("Green", "0"));
-        sortpile.add(new Card("Blue", "0"));
-        sortpile.add(new Card("Yellow", "0"));
+        i = 0;
+        int k = 0;
+        while (sortpile.size() <= 103){
+            System.out.println(i);
+            if(typ[i].equals("+4") || typ[i].equals("color switch")){
+                sortpile.add(new Card("wild",typ[i]));
+                sortpile.add(new Card("wild",typ[i]));
+                sortpile.add(new Card("wild",typ[i]));
+                sortpile.add(new Card("wild",typ[i]));
+            }else{
+                sortpile.add(new Card("Red",typ[i]));
+                sortpile.add(new Card("Green",typ[i]));
+                sortpile.add(new Card("Blue",typ[i]));
+                sortpile.add(new Card("Yellow",typ[i]));
+            }
+            k++;
+            if(i==0){
+                k++;
+            }
+            if(k%2==0){
+                i++;
+            }
+        }
 
-        sortpile.add(new Card("Red", "skip"));
-        sortpile.add(new Card("Red", "skip"));
-        sortpile.add(new Card("Green", "skip"));
-        sortpile.add(new Card("Green", "skip"));
-        sortpile.add(new Card("Yellow", "skip"));
-        sortpile.add(new Card("Yellow", "skip"));
-        sortpile.add(new Card("Blue", "skip"));
-        sortpile.add(new Card("Blue", "skip"));
-
-        sortpile.add(new Card("Red", "reverse"));
-        sortpile.add(new Card("Red", "reverse"));
-        sortpile.add(new Card("Green", "reverse"));
-        sortpile.add(new Card("Green", "reverse"));
-        sortpile.add(new Card("Yellow", "reverse"));
-        sortpile.add(new Card("Yellow", "reverse"));
-        sortpile.add(new Card("Blue", "reverse"));
-        sortpile.add(new Card("Blue", "reverse"));
-
-        sortpile.add(new Card("Red", "+2"));
-        sortpile.add(new Card("Red", "+2"));
-        sortpile.add(new Card("Green", "+2"));
-        sortpile.add(new Card("Green", "+2"));
-        sortpile.add(new Card("Yellow", "+2"));
-        sortpile.add(new Card("Yellow", "+2"));
-        sortpile.add(new Card("Blue", "+2"));
-        sortpile.add(new Card("Blue", "+2"));
-
-        sortpile.add(new Card("wild", "+4"));
-        sortpile.add(new Card("wild", "+4"));
-        sortpile.add(new Card("wild", "+4"));
-        sortpile.add(new Card("wild", "+4"));
-
-        sortpile.add(new Card("wild", "color switch"));
-        sortpile.add(new Card("wild", "color switch"));
-        sortpile.add(new Card("wild", "color switch"));
-        sortpile.add(new Card("wild", "color switch"));
+        i=5;
+        for(int l=0; l<=4;l++){
+            sortpile.add(new Card("wild",typ[i]));
+        }
 
         int j = 0;
         while(j<108){

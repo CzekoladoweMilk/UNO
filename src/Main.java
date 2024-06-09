@@ -37,14 +37,24 @@ public class Main {
 
         ArrayList<rekaGracza> players = new ArrayList<>();
         ArrayList<Card> kartyGracza = new ArrayList<Card>();
-        for(int i = 0; i<ilosc_graczy; i++){
-            for(int j = 1; j<8; j++){
-                kartyGracza.add(new Card(pile.peek().getNazwa(),pile.peek().getWartosc()));
-                pile.pop();
+        int numer_gracza = 0;
+
+        /* Mechanizm rozdawania kart został zmieniony, jednak dalej działa na podobnej jak wcześniej zasadzie
+           Nie udało mi się wpaść na szybkie rozwiązanie problemu, zgodne z obecnym kodem */
+
+        int karty_do_rozdania = ilosc_graczy*7;
+        while(karty_do_rozdania>=0){
+            kartyGracza.add(new Card(pile.peek().getNazwa(),pile.peek().getWartosc()));
+            karty_do_rozdania--;
+
+            pile.pop();
+            if(kartyGracza.size()==7){
+                players.add(new rekaGracza(kartyGracza));
+                kartyGracza = new ArrayList<Card>();
+                numer_gracza++;
             }
-            players.add(new rekaGracza(i,kartyGracza));
-            kartyGracza = new ArrayList<Card>();
         }
+
 
         Card obecna_karta = pile.pop();
 
@@ -163,7 +173,7 @@ public class Main {
                                     case 4: wybrana_karta_nazwa = "Yellow";  wybrana_karta_wartosc = "wild";    break;
                                 }
                             } else {
-                                System.out.println("Niepoprawna wartość, spróbuj ponownie");
+                                czyDobrze = true;
                             }
                         }
                         czyDobrze = false;
@@ -192,16 +202,18 @@ public class Main {
                 }
             }
 
-            for(int i = ilosc_graczy-1; i >= 0; i--){
-                if(players.get(i).getKarty().size()==0){
-                    System.out.println("WYGRYWA GRACZ: " + i+1);
-                    exit(0);
-                }
-            }
             if(gracz > ilosc_graczy-1){
                 gracz = 0;
             } else if ( gracz < 0) {
                 gracz = ilosc_graczy-1;
+            }
+
+            for(int i = ilosc_graczy-1; i >= 0; i--){
+                if(players.get(i).getKarty().size()==0){
+                    System.out.println("WYGRYWA GRACZ: " + i+1);
+                    exit(0);
+                    // Zakończenie gry
+                }
             }
         }
     }
