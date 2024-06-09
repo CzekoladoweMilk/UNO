@@ -20,7 +20,6 @@ public class PotasujTalie extends Main{
         i = 0;
         int k = 0;
         while (sortpile.size() <= 103){
-            System.out.println(i);
             if(typ[i].equals("+4") || typ[i].equals("color switch")){
                 sortpile.add(new Card("wild",typ[i]));
                 sortpile.add(new Card("wild",typ[i]));
